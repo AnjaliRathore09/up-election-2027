@@ -3,87 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UP Elections 2027 | Voter Awareness</title>
+    <title>UP Elections 2027 | Anjali's Guide</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .timeline-step:hover { transform: scale(1.02); transition: 0.3s; }
-        body { scroll-behavior: smooth; }
+        .journey-line { border-left: 2px dashed #f97316; position: absolute; left: 20px; top: 0; bottom: 0; z-index: 0; }
+        .step-card { position: relative; z-index: 10; }
+        .urdu-text { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-slate-50 text-slate-900 transition-all duration-500">
 
-    <!-- Header -->
-    <header class="bg-orange-600 text-white p-6 text-center shadow-lg">
-        <h1 class="text-3xl font-bold">UP Vidhan Sabha Elections 2027</h1>
-        <p class="mt-2 text-orange-100">Your Vote, Your Future | आपका वोट, आपका भविष्य</p>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm p-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="flex gap-2">
+            <button onclick="changeLang('en')" class="px-2 py-1 bg-slate-200 rounded text-xs hover:bg-orange-100">English</button>
+            <button onclick="changeLang('hi')" class="px-2 py-1 bg-slate-200 rounded text-xs hover:bg-orange-100">हिंदी</button>
+            <button onclick="changeLang('ur')" class="px-2 py-1 bg-slate-200 rounded text-xs hover:bg-orange-100">اردو</button>
+        </div>
+        <div class="flex gap-3">
+            <button class="text-orange-600 font-semibold text-sm">Login</button>
+            <button class="bg-orange-600 text-white px-4 py-1 rounded-full text-sm font-bold shadow-md">Register</button>
+        </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="bg-gradient-to-r from-orange-600 to-orange-400 text-white py-12 px-6 text-center">
+        <h1 id="main-title" class="text-4xl font-black">UP Vidhan Sabha 2027</h1>
+        <p id="sub-title" class="mt-2 opacity-90 text-lg">Your Guide to the 2027 Elections</p>
+        
+        <!-- Live Countdown -->
+        <div class="mt-8 bg-white/20 backdrop-blur-md rounded-2xl p-6 inline-block shadow-2xl border border-white/30">
+            <div id="live-timer" class="text-2xl md:text-4xl font-mono font-bold flex gap-4 justify-center">
+                <span>00<p class="text-xs uppercase">Days</p></span>
+                <span>00<p class="text-xs uppercase">Hrs</p></span>
+                <span>00<p class="text-xs uppercase">Min</p></span>
+                <span>00<p class="text-xs uppercase">Sec</p></span>
+            </div>
+        </div>
     </header>
 
-    <!-- Countdown Section -->
-    <section class="max-w-4xl mx-auto my-10 p-6 bg-white rounded-xl shadow-md text-center">
-        <h2 class="text-xl font-semibold mb-4">Countdown to Election (Expected Feb 2027)</h2>
-        <div id="countdown" class="text-4xl font-bold text-orange-600 tracking-widest">
-            Loading Timeline...
-        </div>
-    </section>
+    <!-- The Journey Path (Voting Steps) -->
+    <section class="max-w-3xl mx-auto py-16 px-6">
+        <h2 id="journey-heading" class="text-2xl font-bold mb-10 text-center uppercase tracking-widest">The Voter's Journey</h2>
+        <div class="relative">
+            <div class="journey-line"></div>
+            
+            <div class="step-card ml-12 mb-12 bg-white p-6 rounded-2xl shadow-xl border-t-4 border-blue-500">
+                <span class="absolute -left-[54px] top-4 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">1</span>
+                <h3 id="step1-h" class="text-xl font-bold">Check Voter List</h3>
+                <p id="step1-p" class="text-slate-600 mt-2">Visit nvsp.in to see if your name is registered.</p>
+            </div>
 
-    <!-- Step-by-Step Voting Guide -->
-    <section class="max-w-4xl mx-auto my-10 p-6">
-        <h2 class="text-2xl font-bold mb-6 border-b-2 border-orange-500 pb-2">How to Vote: Step-by-Step Guide</h2>
-        
-        <div class="space-y-4">
-            <div class="timeline-step bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
-                <h3 class="font-bold text-lg">Step 1: Registration (Doing it NOW)</h3>
-                <p class="text-gray-600">Ensure your name is in the Voter List. Visit nvsp.in to check or register.</p>
+            <div class="step-card ml-12 mb-12 bg-white p-6 rounded-2xl shadow-xl border-t-4 border-orange-500">
+                <span class="absolute -left-[54px] top-4 bg-orange-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">2</span>
+                <h3 id="step2-h" class="text-xl font-bold">Find Your Booth</h3>
+                <p id="step2-p" class="text-slate-600 mt-2">Use the Voter Helpline app to find where to go.</p>
             </div>
-            <div class="timeline-step bg-white p-4 rounded-lg shadow border-l-4 border-orange-500">
-                <h3 class="font-bold text-lg">Step 2: Locate Your Booth</h3>
-                <p class="text-gray-600">Find your polling station using your EPIC number on the Voter Helpline app.</p>
-            </div>
-            <div class="timeline-step bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
-                <h3 class="font-bold text-lg">Step 3: Election Day</h3>
-                <p class="text-gray-600">Carry a valid ID, go to your booth, and press the button on the EVM. Wait for the 'BEEP'!</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- History of CMs -->
-    <section class="max-w-4xl mx-auto my-10 p-6 bg-gray-100 rounded-xl">
-        <h2 class="text-2xl font-bold mb-6">Historical CMs of Uttar Pradesh</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-white p-4 rounded shadow">
-                <p class="font-bold">Govind Ballabh Pant</p>
-                <p class="text-sm text-gray-500">The 1st CM (1950-1954)</p>
-            </div>
-            <div class="bg-white p-4 rounded shadow border-l-4 border-blue-400">
-                <p class="font-bold">Sucheta Kripalani</p>
-                <p class="text-sm text-gray-500">1st Woman CM of India (1963-1967)</p>
-            </div>
-            <div class="bg-white p-4 rounded shadow border-l-4 border-red-400">
-                <p class="font-bold">Akhilesh Yadav</p>
-                <p class="text-sm text-gray-500">Youngest CM of UP (2012-2017)</p>
-            </div>
-            <div class="bg-white p-4 rounded shadow border-l-4 border-orange-400">
-                <p class="font-bold">Yogi Adityanath</p>
-                <p class="text-sm text-gray-500">Current CM (2017-Present)</p>
+            <div class="step-card ml-12 bg-white p-6 rounded-2xl shadow-xl border-t-4 border-green-500">
+                <span class="absolute -left-[54px] top-4 bg-green-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold">3</span>
+                <h3 id="step3-h" class="text-xl font-bold">Cast Your Vote</h3>
+                <p id="step3-p" class="text-slate-600 mt-2">Carry your ID, press the button, listen for the beep!</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white p-8 text-center">
-        <p>Created for Awareness by [Your Name]</p>
-        <p class="text-sm text-gray-400 mt-2 italic text-xs">Note: Dates are estimated until ECI announcement in 2027.</p>
+    <!-- CM Timeline -->
+    <section class="bg-slate-100 py-16 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 id="cm-heading" class="text-2xl font-bold mb-8 text-center">Historical Timeline of CMs</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1 -->
+                <div class="flex items-center bg-white p-4 rounded-xl shadow-sm border-l-4 border-slate-300">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Govind_Ballabh_Pant.jpg/220px-Govind_Ballabh_Pant.jpg" class="w-16 h-16 rounded-full object-cover mr-4 grayscale hover:grayscale-0 transition">
+                    <div><p class="font-bold">Govind Ballabh Pant</p><p class="text-xs text-slate-400">1950 - 1954</p></div>
+                </div>
+                <!-- Card 2 -->
+                <div class="flex items-center bg-white p-4 rounded-xl shadow-sm border-l-4 border-slate-300">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Sucheta_Kripalani.jpg/220px-Sucheta_Kripalani.jpg" class="w-16 h-16 rounded-full object-cover mr-4 grayscale hover:grayscale-0 transition">
+                    <div><p class="font-bold">Sucheta Kripalani</p><p class="text-xs text-slate-400">1963 - 1967</p></div>
+                </div>
+                <!-- Card 3 -->
+                <div class="flex items-center bg-white p-4 rounded-xl shadow-sm border-l-4 border-slate-300">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Mayawati_Official_Portrait.jpg/220px-Mayawati_Official_Portrait.jpg" class="w-16 h-16 rounded-full object-cover mr-4 grayscale hover:grayscale-0 transition">
+                    <div><p class="font-bold">Mayawati</p><p class="text-xs text-slate-400">4 Terms (1995-2012)</p></div>
+                </div>
+                <!-- Card 4 -->
+                <div class="flex items-center bg-white p-4 rounded-xl shadow-sm border-l-4 border-orange-500">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Yogi_Adityanath_Official_Portrait.jpg/220px-Yogi_Adityanath_Official_Portrait.jpg" class="w-16 h-16 rounded-full object-cover mr-4 shadow-lg border-2 border-orange-500">
+                    <div><p class="font-bold text-orange-600">Yogi Adityanath</p><p class="text-xs text-slate-400">2017 - Present</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-12 text-center">
+        <p id="footer-text">Created for Voter Awareness by <span class="text-orange-400 font-bold">Anjali</span></p>
+        <p class="text-[10px] text-slate-500 mt-4 italic">© 2026 Awareness Portal</p>
     </footer>
 
     <script>
-        // Simple Countdown Logic
-        const electionDate = new Date("Feb 1, 2027 00:00:00").getTime();
-        setInterval(function() {
+        // LIVE COUNTDOWN LOGIC
+        const targetDate = new Date("Feb 1, 2027 00:00:00").getTime();
+        setInterval(() => {
             const now = new Date().getTime();
-            const distance = electionDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            document.getElementById("countdown").innerHTML = days + " Days Remaining";
+            const diff = targetDate - now;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("live-timer").innerHTML = `
+                <span>${d}<p class="text-[10px]">Days</p></span> : 
+                <span>${h}<p class="text-[10px]">Hrs</p></span> : 
+                <span>${m}<p class="text-[10px]">Min</p></span> : 
+                <span>${s}<p class="text-[10px]">Sec</p></span>`;
         }, 1000);
+
+        // LANGUAGE TOGGLE LOGIC
+        const translations = {
+            en: {
+                title: "UP Vidhan Sabha 2027", sub: "Your Guide to the 2027 Elections",
+                journey: "The Voter's Journey", cm: "Historical Timeline of CMs",
+                s1h: "Check Voter List", s1p: "Visit nvsp.in to see if your name is registered.",
+                s2h: "Find Your Booth", s2p: "Use the Voter Helpline app to find where to go.",
+                s3h: "Cast Your Vote", s3p: "Carry your ID, press the button, listen for the beep!"
+            },
+            hi: {
+                title: "यूपी विधानसभा 2027", sub: "2027 चुनावों के लिए आपका मार्गदर्शन",
+                journey: "मतदाता की यात्रा", cm: "मुख्यमंत्रियों का ऐतिहासिक घटनाक्रम",
+                s1h: "वोटर लिस्ट चेक करें", s1p: "नाम चेक करने के लिए nvsp.in पर जाएं।",
+                s2h: "अपना बूथ खोजें", s2p: "वोटर हेल्पलाइन ऐप का इस्तेमाल करें।",
+                s3h: "अपना वोट डालें", s3p: "आईडी साथ ले जाएं, बटन दबाएं और बीप सुनें!"
+            },
+            ur: {
+                title: "یوپی اسمبلی 2027", sub: "2027 کے انتخابات کے لیے آپ کی گائیڈ",
+                journey: "ووٹر کا سفر", cm: "وزیر اعلیٰ کی تاریخ",
+                s1h: "ووٹر لسٹ چیک کریں", s1p: "اپنا نام چیک کرنے کے لیے ویب سائٹ پر جائیں",
+                s2h: "اپنا بوتھ تلاش کریں", s2p: "ووٹر ہیلپ لائن ایپ استعمال کریں",
+                s3h: "اپنا ووٹ دیں", s3p: "اپنا کارڈ ساتھ لائیں اور بٹن دبائیں"
+            }
+        };
+
+        function changeLang(lang) {
+            document.body.classList.toggle('urdu-text', lang === 'ur');
+            const t = translations[lang];
+            document.getElementById('main-title').innerText = t.title;
+            document.getElementById('sub-title').innerText = t.sub;
+            document.getElementById('journey-heading').innerText = t.journey;
+            document.getElementById('cm-heading').innerText = t.cm;
+            document.getElementById('step1-h').innerText = t.s1h;
+            document.getElementById('step1-p').innerText = t.s1p;
+            document.getElementById('step2-h').innerText = t.s2h;
+            document.getElementById('step2-p').innerText = t.s2p;
+            document.getElementById('step3-h').innerText = t.s3h;
+            document.getElementById('step3-p').innerText = t.s3p;
+        }
     </script>
 </body>
 </html>
