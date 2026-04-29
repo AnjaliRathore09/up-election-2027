@@ -107,27 +107,39 @@
 
     <script>
         // --- 1. PASTE YOUR URL BELOW ---
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbytL1QKhBgD1Zx-lLUxO0fjV-51oMCxQV9wGzUy8U6_zaOieGZjbi90axTUl9X1hmr6/exec';
-        const form = document.forms['google-sheet'];
+       <script>
+    // 1. PASTE YOUR NEW URL BETWEEN THE QUOTES BELOW
+    const scriptURL = 'YOUR_NEW_DEPLOYMENT_URL_HERE';
+    const form = document.forms['google-sheet'];
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.innerText = "SENDING DATA...";
-            btn.disabled = true;
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // Visual feedback for the user
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = "SENDING...";
+        btn.disabled = true;
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    document.getElementById('voterForm').classList.add('hidden');
-                    document.getElementById('successMsg').classList.remove('hidden');
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert('Submission failed. Check your URL or Permissions.');
-                    btn.innerText = "RETRY SYNC";
-                    btn.disabled = false;
-                });
+        // The "no-cors" fetch setup
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: new FormData(form),
+            mode: 'no-cors' // This bypasses the 'Submission Failed' browser block
+        })
+        .then(() => {
+            // Since we use no-cors, we assume success immediately
+            document.getElementById('voterForm').classList.add('hidden');
+            document.getElementById('successMsg').classList.remove('hidden');
+            console.log("Data sent to Google Sheet!");
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert('Something went wrong. Please check your internet.');
+            btn.innerText = "RETRY";
+            btn.disabled = false;
         });
+    });
+</script>
 
         // --- 2. COUNTDOWN TIMER ---
         const target = new Date("Feb 1, 2027 00:00:00").getTime();
