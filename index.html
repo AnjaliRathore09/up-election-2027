@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP Elections 2027 | Voter Awareness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .timeline-step:hover { transform: scale(1.02); transition: 0.3s; }
+        body { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="bg-orange-600 text-white p-6 text-center shadow-lg">
+        <h1 class="text-3xl font-bold">UP Vidhan Sabha Elections 2027</h1>
+        <p class="mt-2 text-orange-100">Your Vote, Your Future | आपका वोट, आपका भविष्य</p>
+    </header>
+
+    <!-- Countdown Section -->
+    <section class="max-w-4xl mx-auto my-10 p-6 bg-white rounded-xl shadow-md text-center">
+        <h2 class="text-xl font-semibold mb-4">Countdown to Election (Expected Feb 2027)</h2>
+        <div id="countdown" class="text-4xl font-bold text-orange-600 tracking-widest">
+            Loading Timeline...
+        </div>
+    </section>
+
+    <!-- Step-by-Step Voting Guide -->
+    <section class="max-w-4xl mx-auto my-10 p-6">
+        <h2 class="text-2xl font-bold mb-6 border-b-2 border-orange-500 pb-2">How to Vote: Step-by-Step Guide</h2>
+        
+        <div class="space-y-4">
+            <div class="timeline-step bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+                <h3 class="font-bold text-lg">Step 1: Registration (Doing it NOW)</h3>
+                <p class="text-gray-600">Ensure your name is in the Voter List. Visit nvsp.in to check or register.</p>
+            </div>
+            <div class="timeline-step bg-white p-4 rounded-lg shadow border-l-4 border-orange-500">
+                <h3 class="font-bold text-lg">Step 2: Locate Your Booth</h3>
+                <p class="text-gray-600">Find your polling station using your EPIC number on the Voter Helpline app.</p>
+            </div>
+            <div class="timeline-step bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+                <h3 class="font-bold text-lg">Step 3: Election Day</h3>
+                <p class="text-gray-600">Carry a valid ID, go to your booth, and press the button on the EVM. Wait for the 'BEEP'!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- History of CMs -->
+    <section class="max-w-4xl mx-auto my-10 p-6 bg-gray-100 rounded-xl">
+        <h2 class="text-2xl font-bold mb-6">Historical CMs of Uttar Pradesh</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded shadow">
+                <p class="font-bold">Govind Ballabh Pant</p>
+                <p class="text-sm text-gray-500">The 1st CM (1950-1954)</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow border-l-4 border-blue-400">
+                <p class="font-bold">Sucheta Kripalani</p>
+                <p class="text-sm text-gray-500">1st Woman CM of India (1963-1967)</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow border-l-4 border-red-400">
+                <p class="font-bold">Akhilesh Yadav</p>
+                <p class="text-sm text-gray-500">Youngest CM of UP (2012-2017)</p>
+            </div>
+            <div class="bg-white p-4 rounded shadow border-l-4 border-orange-400">
+                <p class="font-bold">Yogi Adityanath</p>
+                <p class="text-sm text-gray-500">Current CM (2017-Present)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-8 text-center">
+        <p>Created for Awareness by [Your Name]</p>
+        <p class="text-sm text-gray-400 mt-2 italic text-xs">Note: Dates are estimated until ECI announcement in 2027.</p>
+    </footer>
+
+    <script>
+        // Simple Countdown Logic
+        const electionDate = new Date("Feb 1, 2027 00:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = electionDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("countdown").innerHTML = days + " Days Remaining";
+        }, 1000);
+    </script>
+</body>
+</html>
