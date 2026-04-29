@@ -68,6 +68,55 @@
         </div>
     </section>
 
+    <!-- Impactful Speeches Section -->
+    <section class="max-w-4xl mx-auto py-16 px-6">
+        <h2 id="speech-heading" class="text-2xl font-bold mb-8 text-center uppercase tracking-widest text-slate-700">Impactful Speeches</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Speech 1 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                <div class="aspect-video bg-slate-200 flex items-center justify-center">
+                    <!-- Placeholder for YouTube Embed -->
+                    <p class="text-slate-400 text-sm p-4 text-center">Video: "Development & Law in UP" <br><span class="text-xs italic">(YouTube link can be added here)</span></p>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-orange-600">Yogi Adityanath</h3>
+                    <p class="text-xs text-slate-500 mt-1">Focus: Governance and Law & Order</p>
+                </div>
+            </div>
+            <!-- Speech 2 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100">
+                <div class="aspect-video bg-slate-200 flex items-center justify-center">
+                    <p class="text-slate-400 text-sm p-4 text-center">Video: "Vision for Youth & IT" <br><span class="text-xs italic">(YouTube link can be added here)</span></p>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-blue-600">Akhilesh Yadav</h3>
+                    <p class="text-xs text-slate-500 mt-1">Focus: Infrastructure and Technology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Did You Know? / Fact Checker -->
+    <section class="bg-orange-500 py-12 px-6 text-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold mb-6 text-center">UP Election Facts 🚩</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+                <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                    <p class="text-3xl font-bold">403</p>
+                    <p class="text-sm opacity-80 uppercase">Total Seats</p>
+                </div>
+                <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                    <p class="text-3xl font-bold">2027</p>
+                    <p class="text-sm opacity-80 uppercase">Next Election Year</p>
+                </div>
+                <div class="bg-white/10 p-4 rounded-xl backdrop-blur-sm">
+                    <p class="text-3xl font-bold">18+</p>
+                    <p class="text-sm opacity-80 uppercase">Voting Age</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- CM Timeline -->
     <section class="bg-slate-100 py-16 px-6">
@@ -149,21 +198,25 @@
                 journey: "The Voter's Journey", cm: "Historical Timeline of CMs",
                 s1h: "Check Voter List", s1p: "Visit nvsp.in to see if your name is registered.",
                 s2h: "Find Your Booth", s2p: "Use the Voter Helpline app to find where to go.",
-                s3h: "Cast Your Vote", s3p: "Carry your ID, press the button, listen for the beep!"
+                s3h: "Cast Your Vote", s3p: "Carry your ID, press the button, listen for the beep!",
+                speech: "Impactful Speeches"
             },
             hi: {
                 title: "यूपी विधानसभा 2027", sub: "2027 चुनावों के लिए आपका मार्गदर्शन",
                 journey: "मतदाता की यात्रा", cm: "मुख्यमंत्रियों का ऐतिहासिक घटनाक्रम",
                 s1h: "वोटर लिस्ट चेक करें", s1p: "नाम चेक करने के लिए nvsp.in पर जाएं।",
                 s2h: "अपना बूथ खोजें", s2p: "वोटर हेल्पलाइन ऐप का इस्तेमाल करें।",
-                s3h: "अपना वोट डालें", s3p: "आईडी साथ ले जाएं, बटन दबाएं और बीप सुनें!"
+                s3h: "अपना वोट डालें", s3p: "आईडी साथ ले जाएं, बटन दबाएं और बीप सुनें!",
+                speech: "प्रभावशाली भाषण"
+                
             },
             ur: {
                 title: "یوپی اسمبلی 2027", sub: "2027 کے انتخابات کے لیے آپ کی گائیڈ",
                 journey: "ووٹر کا سفر", cm: "وزیر اعلیٰ کی تاریخ",
                 s1h: "ووٹر لسٹ چیک کریں", s1p: "اپنا نام چیک کرنے کے لیے ویب سائٹ پر جائیں",
                 s2h: "اپنا بوتھ تلاش کریں", s2p: "ووٹر ہیلپ لائن ایپ استعمال کریں",
-                s3h: "اپنا ووٹ دیں", s3p: "اپنا کارڈ ساتھ لائیں اور بٹن دبائیں"
+                s3h: "اپنا ووٹ دیں", s3p: "اپنا کارڈ ساتھ لائیں اور بٹن دبائیں",
+                speech: "اثر انگیز تقریریں"
             }
         };
 
@@ -180,6 +233,7 @@
             document.getElementById('step2-p').innerText = t.s2p;
             document.getElementById('step3-h').innerText = t.s3h;
             document.getElementById('step3-p').innerText = t.s3p;
+            document.getElementById('speech-heading').innerText = translations[lang].speech;
         }
     </script>
 </body>
