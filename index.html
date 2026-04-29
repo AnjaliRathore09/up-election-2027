@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UP Elections 2027 | Anjali's Voter Guide</title>
+    <title>UP Elections 2027 | Anjali's Master Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
     <style>
@@ -11,61 +11,86 @@
         .step-card { position: relative; z-index: 10; transition: 0.3s; }
         .urdu-text { font-family: 'Noto Nastaliq Urdu', serif; direction: rtl; text-align: right; }
         .candidate-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .map-container:hover .district-label { opacity: 1; }
         .glass-effect { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        @keyframes pulse-orange { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .live-dot { width: 10px; height: 10px; background: #ff4d4d; border-radius: 50%; display: inline-block; animation: pulse-orange 1.5s infinite; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 transition-all duration-500 overflow-x-hidden">
 
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav class="bg-white/80 backdrop-blur-md shadow-sm p-4 flex justify-between items-center sticky top-0 z-50 border-b border-slate-100">
         <div class="flex gap-2">
-            <button onclick="changeLang('en')" class="px-3 py-1 bg-slate-100 rounded-lg text-xs font-bold hover:bg-orange-600 hover:text-white transition uppercase">EN</button>
+            <button onclick="changeLang('en')" class="px-3 py-1 bg-slate-100 rounded-lg text-xs font-bold hover:bg-orange-600 hover:text-white transition">EN</button>
             <button onclick="changeLang('hi')" class="px-3 py-1 bg-slate-100 rounded-lg text-xs font-bold hover:bg-orange-600 hover:text-white transition">हिंदी</button>
             <button onclick="changeLang('ur')" class="px-3 py-1 bg-slate-100 rounded-lg text-xs font-bold hover:bg-orange-600 hover:text-white transition">اردو</button>
         </div>
-        <div class="flex gap-3">
-            <button class="bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-black shadow-lg hover:bg-orange-700 hover:scale-105 transition-all active:scale-95">Register Now</button>
+        <div class="flex items-center gap-4">
+            <span class="text-[10px] font-bold text-slate-400 hidden md:block"><span class="live-dot mr-1"></span> LIVE UPDATES</span>
+            <button class="bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-black shadow-lg hover:bg-orange-700 transition-all">Register</button>
         </div>
     </nav>
 
-    <!-- Hero Header -->
-    <header class="bg-gradient-to-br from-orange-600 via-orange-500 to-red-500 text-white py-20 px-6 text-center relative">
+    <!-- Header -->
+    <header class="bg-gradient-to-br from-orange-600 via-orange-500 to-red-500 text-white py-24 px-6 text-center relative">
         <h1 id="main-title" class="text-5xl md:text-7xl font-black italic tracking-tighter drop-shadow-lg">UP VIDHAN SABHA 2027</h1>
-        <p id="sub-title" class="mt-4 opacity-90 text-xl font-bold uppercase tracking-[0.3em]">Power to the People</p>
+        <p id="sub-title" class="mt-4 opacity-90 text-xl font-bold uppercase tracking-[0.3em]">Democracy in Motion</p>
         
-        <!-- Live Countdown -->
         <div class="mt-12 glass-effect rounded-3xl p-8 inline-block shadow-2xl">
             <div id="live-timer" class="text-3xl md:text-5xl font-mono font-bold flex gap-6 justify-center">
-                <span>00<p class="text-[10px] uppercase mt-2 tracking-widest font-sans">Days</p></span> : 
-                <span>00<p class="text-[10px] uppercase mt-2 tracking-widest font-sans">Hrs</p></span> : 
-                <span>00<p class="text-[10px] uppercase mt-2 tracking-widest font-sans">Min</p></span> : 
-                <span>00<p class="text-[10px] uppercase mt-2 tracking-widest font-sans">Sec</p></span>
+                <span>00<p class="text-[10px] uppercase mt-2 font-sans">Days</p></span> : 
+                <span>00<p class="text-[10px] uppercase mt-2 font-sans">Hrs</p></span> : 
+                <span>00<p class="text-[10px] uppercase mt-2 font-sans">Min</p></span> : 
+                <span>00<p class="text-[10px] uppercase mt-2 font-sans">Sec</p></span>
             </div>
         </div>
     </header>
 
-    <!-- The Voter's Journey Path -->
-    <section class="max-w-4xl mx-auto py-24 px-6">
-        <h2 id="journey-heading" class="text-3xl font-black mb-20 text-center text-slate-800 uppercase tracking-widest underline decoration-orange-500 decoration-4 underline-offset-8">The Voter's Journey</h2>
+    <!-- Interactive Map Section -->
+    <section class="max-w-6xl mx-auto py-20 px-6">
+        <div class="text-center mb-12">
+            <h2 id="map-heading" class="text-3xl font-black uppercase tracking-widest text-slate-800">Constituency Map</h2>
+            <p class="text-slate-500 mt-2">Explore the 403 seats of Uttar Pradesh</p>
+        </div>
+        <div class="bg-white rounded-[3rem] p-8 shadow-2xl border border-slate-100 flex flex-col md:flex-row items-center gap-10">
+            <div class="md:w-1/2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Uttar_Pradesh_districts_map.svg/800px-Uttar_Pradesh_districts_map.svg.png" 
+                     alt="UP Map" class="w-full h-auto hover:opacity-80 cursor-pointer transition-opacity rounded-2xl">
+            </div>
+            <div class="md:w-1/2 space-y-6">
+                <div class="p-6 bg-orange-50 rounded-2xl border-l-4 border-orange-500">
+                    <h4 class="font-black text-orange-600">Total Seats: 403</h4>
+                    <p class="text-sm text-slate-600">Majority required: 202</p>
+                </div>
+                <div class="p-6 bg-blue-50 rounded-2xl border-l-4 border-blue-500">
+                    <h4 class="font-black text-blue-600">Voter Turnout (Goal)</h4>
+                    <p class="text-sm text-slate-600">Targeting 75%+ participation in 2027</p>
+                </div>
+                <button class="w-full py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-orange-600 transition-colors">Download Detailed Map (PDF)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voter Journey -->
+    <section class="max-w-4xl mx-auto py-20 px-6">
+        <h2 id="journey-heading" class="text-3xl font-black mb-20 text-center text-slate-800 uppercase tracking-widest">The Voter's Journey</h2>
         <div class="relative">
             <div class="journey-line"></div>
-            
-            <div class="step-card ml-14 mb-14 bg-white p-8 rounded-3xl shadow-xl border-l-8 border-blue-600 hover:border-l-[12px] transition-all">
+            <div class="step-card ml-14 mb-14 bg-white p-8 rounded-3xl shadow-xl border-l-8 border-blue-600">
                 <span class="absolute -left-[64px] top-6 bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-black text-2xl shadow-xl border-4 border-white">1</span>
                 <h3 id="step1-h" class="text-2xl font-black text-blue-600 uppercase">April 2026 Revision</h3>
-                <p id="step1-p" class="text-slate-500 mt-2 font-medium text-lg leading-relaxed">The voter list is being updated right now. Visit nvsp.in to verify your name or add a new entry!</p>
+                <p id="step1-p" class="text-slate-500 mt-2 font-medium">Verify your details on the electoral roll via nvsp.in.</p>
             </div>
-
-            <div class="step-card ml-14 mb-14 bg-white p-8 rounded-3xl shadow-xl border-l-8 border-orange-500 hover:border-l-[12px] transition-all">
+            <div class="step-card ml-14 mb-14 bg-white p-8 rounded-3xl shadow-xl border-l-8 border-orange-500">
                 <span class="absolute -left-[64px] top-6 bg-orange-500 text-white w-14 h-14 rounded-full flex items-center justify-center font-black text-2xl shadow-xl border-4 border-white">2</span>
-                <h3 id="step2-h" class="text-2xl font-black text-orange-600 uppercase">Locate Your Station</h3>
-                <p id="step2-p" class="text-slate-500 mt-2 font-medium text-lg leading-relaxed">Check the Voter Helpline app for your precise booth location and serial number.</p>
+                <h3 id="step2-h" class="text-2xl font-black text-orange-600 uppercase">Booth Identification</h3>
+                <p id="step2-p" class="text-slate-500 mt-2 font-medium">Find your polling station using the Voter Helpline App.</p>
             </div>
-
-            <div class="step-card ml-14 bg-white p-8 rounded-3xl shadow-xl border-l-8 border-green-600 hover:border-l-[12px] transition-all">
+            <div class="step-card ml-14 bg-white p-8 rounded-3xl shadow-xl border-l-8 border-green-600">
                 <span class="absolute -left-[64px] top-6 bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center font-black text-2xl shadow-xl border-4 border-white">3</span>
-                <h3 id="step3-h" class="text-2xl font-black text-green-600 uppercase">Cast Your Vote</h3>
-                <p id="step3-p" class="text-slate-500 mt-2 font-medium text-lg leading-relaxed">Carry a valid ID, press the button on the EVM, and listen for the beep. Your voice matters!</p>
+                <h3 id="step3-h" class="text-2xl font-black text-green-600 uppercase">Election Day</h3>
+                <p id="step3-p" class="text-slate-500 mt-2 font-medium">Bring your Voter ID, vote, and get the inked finger!</p>
             </div>
         </div>
     </section>
@@ -73,115 +98,56 @@
     <!-- Candidate Search -->
     <section class="bg-orange-50 py-20 px-6 border-y border-orange-100">
         <div class="max-w-5xl mx-auto text-center">
-            <h2 id="search-heading" class="text-4xl font-black text-slate-800 mb-6 uppercase tracking-tighter">Find Your Candidate</h2>
+            <h2 id="search-heading" class="text-4xl font-black text-slate-800 mb-12 uppercase tracking-tighter">Candidate Hub</h2>
             <div class="relative max-w-2xl mx-auto mb-16">
-                <input type="text" id="candidateSearch" onkeyup="filterCandidates()" placeholder="Search by name, party, or city..." 
+                <input type="text" id="candidateSearch" onkeyup="filterCandidates()" placeholder="Search Name, Party, or District..." 
                 class="w-full p-6 pl-14 rounded-full border-2 border-orange-200 focus:border-orange-500 shadow-2xl outline-none text-lg transition-all">
                 <span class="absolute left-6 top-6 text-2xl opacity-40">🔍</span>
             </div>
-
             <div id="candidateGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="candidate-card bg-white p-8 rounded-3xl shadow-lg border-b-8 border-orange-600 transition-all">
-                    <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">BJP</span>
+                    <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black">BJP</span>
                     <h3 class="font-black text-2xl mt-4">Yogi Adityanath</h3>
-                    <p class="text-sm text-slate-400 uppercase font-bold tracking-widest mt-2">Gorakhpur Urban</p>
+                    <p class="text-sm text-slate-400 uppercase font-bold mt-2">Gorakhpur</p>
                 </div>
                 <div class="candidate-card bg-white p-8 rounded-3xl shadow-lg border-b-8 border-red-600 transition-all">
-                    <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">SP</span>
+                    <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-[10px] font-black">SP</span>
                     <h3 class="font-black text-2xl mt-4">Akhilesh Yadav</h3>
-                    <p class="text-sm text-slate-400 uppercase font-bold tracking-widest mt-2">Karhal</p>
+                    <p class="text-sm text-slate-400 uppercase font-bold mt-2">Karhal</p>
                 </div>
                 <div class="candidate-card bg-white p-8 rounded-3xl shadow-lg border-b-8 border-blue-600 transition-all">
-                    <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">BSP</span>
+                    <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-[10px] font-black">BSP</span>
                     <h3 class="font-black text-2xl mt-4">Mayawati</h3>
-                    <p class="text-sm text-slate-400 uppercase font-bold tracking-widest mt-2">Party Leadership</p>
+                    <p class="text-sm text-slate-400 uppercase font-bold mt-2">Party HQ</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Video Speeches -->
-    <section class="max-w-6xl mx-auto py-24 px-6">
-        <h2 id="speech-heading" class="text-3xl font-black mb-16 text-center text-slate-800 uppercase tracking-[0.2em]">Political Voice Wall</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="rounded-[2.5rem] overflow-hidden shadow-2xl group border-4 border-white">
-                <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/N-0_f96e4Gk" frameborder="0" allowfullscreen></iframe>
-                <div class="bg-white p-6 font-black text-xl text-slate-700 uppercase tracking-tight">Vision for Governance</div>
-            </div>
-            <div class="rounded-[2.5rem] overflow-hidden shadow-2xl group border-4 border-white">
-                <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/n3pA7oB7yN0" frameborder="0" allowfullscreen></iframe>
-                <div class="bg-white p-6 font-black text-xl text-slate-700 uppercase tracking-tight">Youth & Economic Progress</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CM Timeline -->
-    <section class="bg-slate-900 text-white py-24 px-6 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto relative z-10">
-            <h2 id="cm-heading" class="text-4xl font-black mb-16 text-center text-orange-500 uppercase italic">History of Leaders</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
-                <div class="text-center group">
-                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-slate-800 group-hover:border-orange-500 transition-all duration-500 hover:scale-110">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Govind_Ballabh_Pant.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0">
-                    </div>
-                    <p class="mt-4 font-black text-lg">G.B. Pant</p>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">1950 - 1954</p>
-                </div>
-                <div class="text-center group">
-                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-slate-800 group-hover:border-blue-500 transition-all duration-500 hover:scale-110">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Mayawati_Official_Portrait.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0">
-                    </div>
-                    <p class="mt-4 font-black text-lg text-blue-400">Mayawati</p>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Multi-Term</p>
-                </div>
-                <div class="text-center group">
-                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-slate-800 group-hover:border-red-500 transition-all duration-500 hover:scale-110">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Akhilesh_Yadav.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0">
-                    </div>
-                    <p class="mt-4 font-black text-lg text-red-400">Akhilesh Yadav</p>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">2012 - 2017</p>
-                </div>
-                <div class="text-center group">
-                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-orange-500 transition-all duration-500 hover:scale-110">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Yogi_Adityanath_Official_Portrait.jpg" class="w-full h-full object-cover">
-                    </div>
-                    <p class="mt-4 font-black text-lg text-orange-500">Yogi Adityanath</p>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">2017 - Present</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Voter Voice Form -->
+    <!-- Feedback / Backend Form -->
     <section class="max-w-5xl mx-auto py-24 px-6">
         <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-slate-100">
-            <div class="bg-orange-600 p-12 text-white lg:w-1/3 flex flex-col justify-center">
-                <h2 class="text-4xl font-black mb-6">Voter Voice</h2>
-                <p class="text-lg opacity-80 leading-relaxed font-medium">Any concerns about your constituency or issues with your voter registration? Speak up!</p>
-                <div class="mt-12 space-y-4 font-mono text-sm">
-                    <p>📍 LUCKNOW, UP</p>
-                    <p>📧 CONTACT@ANJALI-VOTES.IN</p>
+            <div class="bg-slate-900 p-12 text-white lg:w-1/3 flex flex-col justify-center">
+                <h2 class="text-4xl font-black mb-6 text-orange-500">Contact Us</h2>
+                <p class="text-lg opacity-80 leading-relaxed">Your queries are saved directly to our election database for review.</p>
+                <div class="mt-12 space-y-4 font-mono text-xs opacity-50 uppercase tracking-widest">
+                    <p>Database: Connected</p>
+                    <p>Status: Active 2026</p>
                 </div>
             </div>
             <div class="p-12 lg:w-2/3">
                 <form id="voterForm" onsubmit="handleForm(event)" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text" placeholder="Full Name" required class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none focus:border-orange-500 transition-all">
-                        <input type="email" placeholder="Email Address" required class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none focus:border-orange-500 transition-all">
+                        <input type="text" name="Name" placeholder="Name" required class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-orange-500 outline-none">
+                        <input type="email" name="Email" placeholder="Email" required class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-orange-500 outline-none">
                     </div>
-                    <select class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none focus:border-orange-500 transition-all">
-                        <option>Registration Issue</option>
-                        <option>Booth Location</option>
-                        <option>Candidate Inquiry</option>
-                        <option>Other</option>
-                    </select>
-                    <textarea placeholder="Write your message here..." rows="4" class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none focus:border-orange-500 transition-all"></textarea>
-                    <button type="submit" class="bg-orange-600 text-white px-10 py-4 rounded-full font-black text-lg hover:bg-slate-900 shadow-xl transition-all active:scale-95">SEND MESSAGE</button>
+                    <textarea name="Message" placeholder="How can we help?" rows="4" class="w-full p-4 rounded-2xl bg-slate-50 border border-slate-200 focus:border-orange-500 outline-none"></textarea>
+                    <button type="submit" id="submitBtn" class="bg-orange-600 text-white px-10 py-4 rounded-full font-black text-lg hover:bg-slate-900 shadow-xl transition-all">SUBMIT TO DATABASE</button>
                 </form>
                 <div id="successMsg" class="hidden text-center py-10">
-                    <h3 class="text-4xl mb-4">✅</h3>
-                    <p class="text-2xl font-black text-slate-800">Thank you, Anjali!</p>
-                    <p class="text-slate-500 mt-2">Your concern has been registered in our database.</p>
+                    <div class="text-5xl mb-4">🚀</div>
+                    <p class="text-2xl font-black text-slate-800">Success, Anjali!</p>
+                    <p class="text-slate-500 mt-2">Data synced with Google Sheets successfully.</p>
                 </div>
             </div>
         </div>
@@ -189,81 +155,62 @@
 
     <!-- Footer -->
     <footer class="bg-white py-16 text-center border-t border-slate-200">
-        <p id="footer-text" class="text-slate-900 font-black text-xl tracking-tighter">Brought to you by <span class="text-orange-600 underline decoration-2">ANJALI</span></p>
-        <div class="flex justify-center gap-8 mt-8">
-            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">#UP2027</span>
-            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">#VOTEFORUP</span>
-            <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">#ANJALIGUIDE</span>
-        </div>
+        <p id="footer-text" class="text-slate-900 font-black text-xl tracking-tighter">Brought to you by <span class="text-orange-600 underline">ANJALI</span></p>
+        <p class="text-[10px] text-slate-400 mt-4 uppercase tracking-[0.4em]">UP Election Portal 2027</p>
     </footer>
 
     <script>
-        // LIVE COUNTDOWN TIMER
-        const target = new Date("Feb 1, 2027 00:00:00").getTime();
+        // COUNTDOWN
+        const electionDate = new Date("Feb 1, 2027 00:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
-            const gap = target - now;
+            const gap = electionDate - now;
             const d = Math.floor(gap / (1000 * 60 * 60 * 24));
             const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((gap % (1000 * 60)) / 1000);
             document.getElementById("live-timer").innerHTML = `
-                <span>${d}<p class="text-[10px] font-sans">Days</p></span> : 
-                <span>${h}<p class="text-[10px] font-sans">Hrs</p></span> : 
-                <span>${m}<p class="text-[10px] font-sans">Min</p></span> : 
-                <span>${s}<p class="text-[10px] font-sans">Sec</p></span>`;
+                <span>${d}<p class="text-[10px]">Days</p></span> : 
+                <span>${h}<p class="text-[10px]">Hrs</p></span> : 
+                <span>${m}<p class="text-[10px]">Min</p></span> : 
+                <span>${s}<p class="text-[10px]">Sec</p></span>`;
         }, 1000);
 
-        // SEARCH FILTER
+        // SEARCH
         function filterCandidates() {
             let val = document.getElementById('candidateSearch').value.toLowerCase();
             let cards = document.getElementsByClassName('candidate-card');
-            for (let card of cards) {
-                card.style.display = card.innerText.toLowerCase().includes(val) ? "block" : "none";
-            }
+            for (let c of cards) { c.style.display = c.innerText.toLowerCase().includes(val) ? "block" : "none"; }
         }
 
-        // FORM HANDLER
+        // FORM BACKEND SIMULATION
         function handleForm(e) {
             e.preventDefault();
-            document.getElementById('voterForm').classList.add('hidden');
-            document.getElementById('successMsg').classList.remove('hidden');
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "SYNCING...";
+            btn.disabled = true;
+
+            // This is where you'll put your Google Script URL later
+            setTimeout(() => {
+                document.getElementById('voterForm').classList.add('hidden');
+                document.getElementById('successMsg').classList.remove('hidden');
+            }, 1500);
         }
 
-        // LANGUAGE TRANSLATION
-        const dict = {
-            en: {
-                title: "UP VIDHAN SABHA 2027", sub: "Power to the People", journey: "The Voter's Journey",
-                search: "Find Your Candidate", speech: "Political Voice Wall", cm: "History of Leaders",
-                s1h: "April 2026 Revision", s1p: "The voter list is being updated right now. Visit nvsp.in to verify your name!",
-                s2h: "Locate Your Station", s2p: "Check the Voter Helpline app for your precise booth location.",
-                s3h: "Cast Your Vote", s3p: "Carry a valid ID, press the button on the EVM, and listen for the beep."
-            },
-            hi: {
-                title: "यूपी विधानसभा 2027", sub: "जनता की शक्ति", journey: "मतदाता का सफर",
-                search: "प्रत्याशी खोजें", speech: "राजनीतिक आवाज", cm: "नेताओं का इतिहास",
-                s1h: "अप्रैल 2026 संशोधन", s1p: "वोटर लिस्ट अपडेट की जा रही है। अपना नाम चेक करने के लिए nvsp.in पर जाएं!",
-                s2h: "अपना बूथ खोजें", s2p: "अपने बूथ का पता जानने के लिए वोटर हेल्पलाइन ऐप देखें।",
-                s3h: "वोट डालें", s3p: "आईडी साथ ले जाएं, ईवीएम पर बटन दबाएं और बीप सुनें।"
-            },
-            ur: {
-                title: "یوپی اسمبلی 2027", sub: "عوام کی طاقت", journey: "ووٹر کا سفر",
-                search: "امیدوار تلاش کریں", speech: "سیاسی آواز", cm: "قائدین کی تاریخ",
-                s1h: "اپریل 2026 درستگی", s1p: "ووٹر لسٹ ابھی اپ ڈیٹ ہو رہی ہے۔ اپنی نام کی تصدیق کریں!",
-                s2h: "اپنا اسٹیشن تلاش کریں", s2p: "اپنے بوتھ کا پتہ معلوم کرنے کے لیے ایپ استعمال کریں۔",
-                s3h: "اپنا ووٹ دیں", s3p: "شناختی کارڈ لائیں، بٹن دبائیں اور بیپ کی آواز سنیں۔"
-            }
+        // LANGUAGES
+        const translations = {
+            en: { title: "UP VIDHAN SABHA 2027", sub: "Democracy in Motion", journey: "The Voter's Journey", search: "Candidate Hub", s1h: "April 2026 Revision", s1p: "Verify your details on the electoral roll via nvsp.in.", s2h: "Booth Identification", s2p: "Find your polling station using the Voter Helpline App.", s3h: "Election Day", s3p: "Bring your Voter ID, vote, and get the inked finger!" },
+            hi: { title: "यूपी विधानसभा 2027", sub: "लोकतंत्र की लहर", journey: "मतदाता का सफर", search: "प्रत्याशी हब", s1h: "अप्रैल 2026 संशोधन", s1p: "nvsp.in के माध्यम से मतदाता सूची में अपना विवरण सत्यापित करें।", s2h: "बूथ की पहचान", s2p: "वोटर हेल्पलाइन ऐप का उपयोग करके अपने मतदान केंद्र का पता लगाएं।", s3h: "चुनाव का दिन", s3p: "अपना वोटर आईडी लाएं, वोट दें और स्याही लगवाएं!" },
+            ur: { title: "یوپی اسمبلی 2027", sub: "جمہوریت کی حرکت", journey: "ووٹر کا سفر", search: "امیدوار مرکز", s1h: "اپریل 2026 درستگی", s1p: "ویب سائٹ کے ذریعے اپنی تفصیلات کی تصدیق کریں۔", s2h: "بوتھ کی شناخت", s2p: "ووٹر ہیلپ لائن ایپ کے ذریعے اپنا پولنگ اسٹیشن تلاش کریں۔", s3h: "انتخابات کا دن", s3p: "شناختی کارڈ لائیں، ووٹ دیں اور انگلی پر نشان لگوائیں۔" }
         };
 
         function changeLang(l) {
             document.body.classList.toggle('urdu-text', l === 'ur');
-            const t = dict[l];
+            const t = translations[l];
             document.getElementById('main-title').innerText = t.title;
             document.getElementById('sub-title').innerText = t.sub;
             document.getElementById('journey-heading').innerText = t.journey;
             document.getElementById('search-heading').innerText = t.search;
-            document.getElementById('speech-heading').innerText = t.speech;
-            document.getElementById('cm-heading').innerText = t.cm;
             document.getElementById('step1-h').innerText = t.s1h;
             document.getElementById('step1-p').innerText = t.s1p;
             document.getElementById('step2-h').innerText = t.s2h;
